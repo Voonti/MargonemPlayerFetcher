@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32616.157
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MargonemPlayerFetcher.Api", "MargonemPlayerFetcherApi\MargonemPlayerFetcher.Api.csproj", "{B946071B-AD81-4EB2-8740-07D7404C2CBD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MargonemPlayerFetcher.Domain", "MargonemPlayerFetcher.Domain\MargonemPlayerFetcher.Domain.csproj", "{95E76543-A19D-4C53-8352-FA50AC078751}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MargonemPlayerFetcher.Domain", "MargonemPlayerFetcher.Domain\MargonemPlayerFetcher.Domain.csproj", "{95E76543-A19D-4C53-8352-FA50AC078751}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MargonemPlayerFetcher.Application", "MargonemPlayerFetcher.Application\MargonemPlayerFetcher.Application.csproj", "{C25940C0-EAF5-4045-90CF-A09C414D18A0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MargonemPlayerFetcher.Application", "MargonemPlayerFetcher.Application\MargonemPlayerFetcher.Application.csproj", "{C25940C0-EAF5-4045-90CF-A09C414D18A0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MargonemPlayerFetcher.Infrastructure", "MargonemPlayerFetcher.Infrastructure\MargonemPlayerFetcher.Infrastructure.csproj", "{C47ECD35-DED0-4E30-9977-F83815E577F6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MargonemPlayerFetcher.Infrastructure", "MargonemPlayerFetcher.Infrastructure\MargonemPlayerFetcher.Infrastructure.csproj", "{C47ECD35-DED0-4E30-9977-F83815E577F6}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{F3C89B0D-6539-438B-A686-075BC48DF387}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MargonemPlayerFetcher.Api", "MargonemPlayerFetcher.Api\MargonemPlayerFetcher.Api.csproj", "{75F4CB80-C2F6-4984-B1E3-AF378054186D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +19,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{B946071B-AD81-4EB2-8740-07D7404C2CBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B946071B-AD81-4EB2-8740-07D7404C2CBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B946071B-AD81-4EB2-8740-07D7404C2CBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B946071B-AD81-4EB2-8740-07D7404C2CBD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{95E76543-A19D-4C53-8352-FA50AC078751}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{95E76543-A19D-4C53-8352-FA50AC078751}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{95E76543-A19D-4C53-8352-FA50AC078751}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -33,9 +31,19 @@ Global
 		{C47ECD35-DED0-4E30-9977-F83815E577F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C47ECD35-DED0-4E30-9977-F83815E577F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C47ECD35-DED0-4E30-9977-F83815E577F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{75F4CB80-C2F6-4984-B1E3-AF378054186D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75F4CB80-C2F6-4984-B1E3-AF378054186D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75F4CB80-C2F6-4984-B1E3-AF378054186D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75F4CB80-C2F6-4984-B1E3-AF378054186D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{95E76543-A19D-4C53-8352-FA50AC078751} = {F3C89B0D-6539-438B-A686-075BC48DF387}
+		{C25940C0-EAF5-4045-90CF-A09C414D18A0} = {F3C89B0D-6539-438B-A686-075BC48DF387}
+		{C47ECD35-DED0-4E30-9977-F83815E577F6} = {F3C89B0D-6539-438B-A686-075BC48DF387}
+		{75F4CB80-C2F6-4984-B1E3-AF378054186D} = {F3C89B0D-6539-438B-A686-075BC48DF387}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2FA7672F-83DE-40E3-BF70-EC39FD722458}

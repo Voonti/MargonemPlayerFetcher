@@ -4,7 +4,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 using MediatR;
-using MargonemPlayerFetcher.Infrastructure.IoC;
 using MargonemPlayerFetcher.Application.IoC;
 using MargonemPlayerFetcher.Infrastructure.DbContexts;
 
