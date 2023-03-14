@@ -13,6 +13,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{F3C89B0D-653
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MargonemPlayerFetcher.Api", "MargonemPlayerFetcher.Api\MargonemPlayerFetcher.Api.csproj", "{75F4CB80-C2F6-4984-B1E3-AF378054186D}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{52C58B3B-B10F-4FD7-83EB-9C6898925662}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MargonemPlayerFetcher.Api.Tests", "..\tests\MargonemPlayerFetcher.Api.Tests\MargonemPlayerFetcher.Api.Tests.csproj", "{3AB7C6A7-10B7-4346-BDDD-72123BE8C559}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MargonemPlayerFetcher.Application.Tests", "..\tests\MargonemPlayerFetcher.Application.Tests\MargonemPlayerFetcher.Application.Tests.csproj", "{DC21A0B1-3389-404F-8648-DD45A647BEC0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MargonemPlayerFetcher.Infrastructure.Tests", "..\tests\MargonemPlayerFetcher.Infrastructure.Tests\MargonemPlayerFetcher.Infrastructure.Tests.csproj", "{283DD169-3F03-4DC4-9355-C5CB0A0B83A3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +43,18 @@ Global
 		{75F4CB80-C2F6-4984-B1E3-AF378054186D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{75F4CB80-C2F6-4984-B1E3-AF378054186D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{75F4CB80-C2F6-4984-B1E3-AF378054186D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3AB7C6A7-10B7-4346-BDDD-72123BE8C559}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3AB7C6A7-10B7-4346-BDDD-72123BE8C559}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3AB7C6A7-10B7-4346-BDDD-72123BE8C559}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3AB7C6A7-10B7-4346-BDDD-72123BE8C559}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC21A0B1-3389-404F-8648-DD45A647BEC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC21A0B1-3389-404F-8648-DD45A647BEC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC21A0B1-3389-404F-8648-DD45A647BEC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC21A0B1-3389-404F-8648-DD45A647BEC0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{283DD169-3F03-4DC4-9355-C5CB0A0B83A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{283DD169-3F03-4DC4-9355-C5CB0A0B83A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{283DD169-3F03-4DC4-9355-C5CB0A0B83A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{283DD169-3F03-4DC4-9355-C5CB0A0B83A3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -44,6 +64,9 @@ Global
 		{C25940C0-EAF5-4045-90CF-A09C414D18A0} = {F3C89B0D-6539-438B-A686-075BC48DF387}
 		{C47ECD35-DED0-4E30-9977-F83815E577F6} = {F3C89B0D-6539-438B-A686-075BC48DF387}
 		{75F4CB80-C2F6-4984-B1E3-AF378054186D} = {F3C89B0D-6539-438B-A686-075BC48DF387}
+		{3AB7C6A7-10B7-4346-BDDD-72123BE8C559} = {52C58B3B-B10F-4FD7-83EB-9C6898925662}
+		{DC21A0B1-3389-404F-8648-DD45A647BEC0} = {52C58B3B-B10F-4FD7-83EB-9C6898925662}
+		{283DD169-3F03-4DC4-9355-C5CB0A0B83A3} = {52C58B3B-B10F-4FD7-83EB-9C6898925662}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2FA7672F-83DE-40E3-BF70-EC39FD722458}
