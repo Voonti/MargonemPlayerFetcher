@@ -26,7 +26,6 @@ namespace MargonemPlayerFetcher.Application.Items.Commands
             {
                 itemsToInsert.Add(new Item()
                 {
-                    Id = item.Id,
                     userId = item.userId,
                     charId = item.charId,
                     hid = item.hid,
@@ -35,7 +34,6 @@ namespace MargonemPlayerFetcher.Application.Items.Commands
                     st = item.st,
                     stat = item.stat,
                     tpl = item.tpl,
-                    rarity = item.rarity,
                     lastFetchDate = DateTime.Now,
                     fetchDate = DateTime.Now
                 });

@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MargonemPlayerFetcher.Infra
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{F3C89B0D-6539-438B-A686-075BC48DF387}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MargonemPlayerFetcher.Api", "MargonemPlayerFetcher.Api\MargonemPlayerFetcher.Api.csproj", "{75F4CB80-C2F6-4984-B1E3-AF378054186D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MargonemPlayerFetcher.Api", "MargonemPlayerFetcher.Api\MargonemPlayerFetcher.Api.csproj", "{75F4CB80-C2F6-4984-B1E3-AF378054186D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

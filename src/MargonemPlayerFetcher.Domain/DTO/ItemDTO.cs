@@ -8,7 +8,6 @@ namespace MargonemPlayerFetcher.Domain.DTO
 {
     public class ItemDTO
     {
-        public int Id { get; set; }
         public int userId { get; set; }
         public int charId { get; set; }
         public string hid { get; set; }
@@ -17,6 +16,5 @@ namespace MargonemPlayerFetcher.Domain.DTO
         public int st { get; set; }
         public string stat { get; set; }
         public int tpl { get; set; }
-        public string rarity { get; set; }
     }
 }
