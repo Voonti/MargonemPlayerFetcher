@@ -20,6 +20,10 @@ namespace MargonemPlayerFetcherApi.Controllers
         [HttpPost]
         public async Task<IActionResult> InsertPlayers([FromBody] PlayerDTO players)
         {
+            var adwdwd = ModelState;
+
+            var wdwdwd = ModelState.IsValid;
+
             var command = new InsertPlayerCommand(players);
 
             await _mediator.Send(command);

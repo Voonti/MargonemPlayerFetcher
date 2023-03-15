@@ -12,8 +12,8 @@ namespace MargonemPlayerFetcher.Domain.Validators
     {
         public ItemValidator()
         {
-            RuleFor(x => x.userId).NotNull();
-            RuleFor(x => x.charId).NotNull();
+            RuleFor(x => x.userId).GreaterThan(1);
+            RuleFor(x => x.charId).GreaterThan(1);
             RuleFor(x => x.hid).NotNull();
             RuleFor(x => x.name).NotNull();
             RuleFor(x => x.icon).NotNull();

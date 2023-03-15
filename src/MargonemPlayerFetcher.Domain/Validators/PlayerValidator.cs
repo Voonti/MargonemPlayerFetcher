@@ -12,13 +12,13 @@ namespace MargonemPlayerFetcher.Domain.Validators
     {
         public PlayerValidator()
         {
-            RuleFor(x => x.userId).NotNull();
-            RuleFor(x => x.charId).NotNull();
+            RuleFor(x => x.userId).GreaterThan(1);
+            RuleFor(x => x.charId).GreaterThan(1);
             RuleFor(x => x.nick).NotNull();
             RuleFor(x => x.server).NotNull();
             RuleFor(x => x.profession).NotNull();
             RuleFor(x => x.rank).NotNull();
-            RuleFor(x => x.level).NotNull();
+            RuleFor(x => x.level).NotNull().LessThan(33);
         }
     }
 }
