@@ -19,8 +19,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MargonemPlayerFetcher.Domain\MargonemPlayerFetcher.Domain.csproj" />
-    <ProjectReference Include="..\MargonemPlayerFetcher.Infrastructure\MargonemPlayerFetcher.Infrastructure.csproj" />
+    <ProjectReference Include="..\MargonemPlayerFetcher.Domain\MargoFetcher.Domain.csproj" />
+    <ProjectReference Include="..\MargonemPlayerFetcher.Infrastructure\MargoFetcher.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

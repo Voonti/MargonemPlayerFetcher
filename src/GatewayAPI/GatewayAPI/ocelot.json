@@ -1,0 +1,70 @@
+{
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/api/Item/{hid}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7060
+        }
+      ],
+      "UpstreamPathTemplate": "/items/{hid}",
+      "UpstreamHttpMethod": [ "Get" ],
+      "SwaggerKey": "Items"
+    },
+    {
+      "DownstreamPathTemplate": "/api/Item",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7060
+        }
+      ],
+      "UpstreamPathTemplate": "/items",
+      "UpstreamHttpMethod": [ "Post" ],
+      "SwaggerKey": "Items"
+    },
+    {
+      "DownstreamPathTemplate": "/api/Player",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7060
+        }
+      ],
+      "UpstreamPathTemplate": "/players",
+      "UpstreamHttpMethod": [ "Post" ],
+      "SwaggerKey": "Players"
+    }
+  ],
+
+  "GlobalConfiguration": {
+    "BaseUrl": "https://localhost:32768"
+  },
+
+  "SwaggerEndPoints": [
+    {
+      "Key": "Players",
+      "Config": [
+        {
+          "Name": "Margo Api",
+          "Version": "v1",
+          "Url": "https://localhost:7060/swagger/v1/swagger.json"
+        }
+      ]
+    },
+    {
+      "Key": "Items",
+      "Config": [
+        {
+          "Name": "Items Api",
+          "Version": "v1",
+          "Url": "https://localhost:7060/swagger/v1/swagger.json"
+        }
+      ]
+    }
+  ]
+}

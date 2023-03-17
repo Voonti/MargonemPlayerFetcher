@@ -21,7 +21,7 @@ namespace MargonemPlayerFetcherApi.Controllers
         }
 
         [HttpGet("{hid}")]
-        public async Task<IActionResult> GetItems([FromRoute] string hid)
+        public async Task<IActionResult> GetItem([FromRoute] string hid)
         {
             var query = new GetItemQuery(hid);
 

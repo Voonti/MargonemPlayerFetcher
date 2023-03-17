@@ -4,20 +4,20 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <UserSecretsId>3d3b658d-5ae4-4008-b284-abf10d8267ae</UserSecretsId>
+    <UserSecretsId>38198568-5d63-4e10-b061-0625798bc092</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <DockerfileContext>..\..</DockerfileContext>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="FluentValidation.AspNetCore" Version="11.2.2" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.15.1" />
+    <PackageReference Include="MMLib.SwaggerForOcelot" Version="6.2.0" />
+    <PackageReference Include="Ocelot" Version="18.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MargonemPlayerFetcher.Application\MargonemPlayerFetcher.Application.csproj" />
-    <ProjectReference Include="..\MargonemPlayerFetcher.Domain\MargonemPlayerFetcher.Domain.csproj" />
-    <ProjectReference Include="..\MargonemPlayerFetcher.Infrastructure\MargonemPlayerFetcher.Infrastructure.csproj" />
+    <Folder Include="Controllers\" />
   </ItemGroup>
 
 </Project>

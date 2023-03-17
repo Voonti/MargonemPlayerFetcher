@@ -3,23 +3,27 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32616.157
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MargonemPlayerFetcher.Domain", "MargonemPlayerFetcher.Domain\MargonemPlayerFetcher.Domain.csproj", "{95E76543-A19D-4C53-8352-FA50AC078751}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MargoFetcher.Domain", "MargonemPlayerFetcher.Domain\MargoFetcher.Domain.csproj", "{95E76543-A19D-4C53-8352-FA50AC078751}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MargonemPlayerFetcher.Application", "MargonemPlayerFetcher.Application\MargonemPlayerFetcher.Application.csproj", "{C25940C0-EAF5-4045-90CF-A09C414D18A0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MargoFetcher.Application", "MargonemPlayerFetcher.Application\MargoFetcher.Application.csproj", "{C25940C0-EAF5-4045-90CF-A09C414D18A0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MargonemPlayerFetcher.Infrastructure", "MargonemPlayerFetcher.Infrastructure\MargonemPlayerFetcher.Infrastructure.csproj", "{C47ECD35-DED0-4E30-9977-F83815E577F6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MargoFetcher.Infrastructure", "MargonemPlayerFetcher.Infrastructure\MargoFetcher.Infrastructure.csproj", "{C47ECD35-DED0-4E30-9977-F83815E577F6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{F3C89B0D-6539-438B-A686-075BC48DF387}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MargonemPlayerFetcher.Api", "MargonemPlayerFetcher.Api\MargonemPlayerFetcher.Api.csproj", "{75F4CB80-C2F6-4984-B1E3-AF378054186D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MargoFetcher.Api", "MargonemPlayerFetcher.Api\MargoFetcher.Api.csproj", "{75F4CB80-C2F6-4984-B1E3-AF378054186D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{52C58B3B-B10F-4FD7-83EB-9C6898925662}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MargonemPlayerFetcher.Api.Tests", "..\tests\MargonemPlayerFetcher.Api.Tests\MargonemPlayerFetcher.Api.Tests.csproj", "{3AB7C6A7-10B7-4346-BDDD-72123BE8C559}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MargonemPlayerFetcher.Api.Tests", "..\tests\MargonemPlayerFetcher.Api.Tests\MargonemPlayerFetcher.Api.Tests.csproj", "{3AB7C6A7-10B7-4346-BDDD-72123BE8C559}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MargonemPlayerFetcher.Application.Tests", "..\tests\MargonemPlayerFetcher.Application.Tests\MargonemPlayerFetcher.Application.Tests.csproj", "{DC21A0B1-3389-404F-8648-DD45A647BEC0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MargonemPlayerFetcher.Application.Tests", "..\tests\MargonemPlayerFetcher.Application.Tests\MargonemPlayerFetcher.Application.Tests.csproj", "{DC21A0B1-3389-404F-8648-DD45A647BEC0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MargonemPlayerFetcher.Infrastructure.Tests", "..\tests\MargonemPlayerFetcher.Infrastructure.Tests\MargonemPlayerFetcher.Infrastructure.Tests.csproj", "{283DD169-3F03-4DC4-9355-C5CB0A0B83A3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MargonemPlayerFetcher.Infrastructure.Tests", "..\tests\MargonemPlayerFetcher.Infrastructure.Tests\MargonemPlayerFetcher.Infrastructure.Tests.csproj", "{283DD169-3F03-4DC4-9355-C5CB0A0B83A3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GatewayAPI", "GatewayAPI", "{37D67080-9D47-4BFD-B567-937D992AD60E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GatewayAPI", "GatewayAPI\GatewayAPI\GatewayAPI.csproj", "{29E2EC4A-5141-4F31-B690-405985924CDD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,6 +59,10 @@ Global
 		{283DD169-3F03-4DC4-9355-C5CB0A0B83A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{283DD169-3F03-4DC4-9355-C5CB0A0B83A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{283DD169-3F03-4DC4-9355-C5CB0A0B83A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29E2EC4A-5141-4F31-B690-405985924CDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29E2EC4A-5141-4F31-B690-405985924CDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29E2EC4A-5141-4F31-B690-405985924CDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29E2EC4A-5141-4F31-B690-405985924CDD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -67,6 +75,7 @@ Global
 		{3AB7C6A7-10B7-4346-BDDD-72123BE8C559} = {52C58B3B-B10F-4FD7-83EB-9C6898925662}
 		{DC21A0B1-3389-404F-8648-DD45A647BEC0} = {52C58B3B-B10F-4FD7-83EB-9C6898925662}
 		{283DD169-3F03-4DC4-9355-C5CB0A0B83A3} = {52C58B3B-B10F-4FD7-83EB-9C6898925662}
+		{29E2EC4A-5141-4F31-B690-405985924CDD} = {37D67080-9D47-4BFD-B567-937D992AD60E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2FA7672F-83DE-40E3-BF70-EC39FD722458}
