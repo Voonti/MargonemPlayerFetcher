@@ -11,6 +11,7 @@ namespace MargoFetcher.Domain.Enums
         Artifact = 'a',
         Legend = 'l',
         Heroic = 'h',
-        Unique = 'u'
+        Unique = 'u',
+        Normal = 'n'
     }
 }

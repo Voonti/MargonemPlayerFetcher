@@ -25,14 +25,14 @@ namespace MargonemPlayerFetcher.Application.Items.Commands
         }
         public async Task<bool> Handle(InsertItemCommand request, CancellationToken cancellationToken)
         {
-            if (true)
-            {
-
-            }
-
             var itemsToInsert = new List<Item>();
             foreach (var item in request.items)
             {
+                if (!CheckIfValidItem(item))
+                {
+                    continue;
+                }
+
                 itemsToInsert.Add(new Item()
                 {
                     userId = item.userId,
@@ -43,13 +43,25 @@ namespace MargonemPlayerFetcher.Application.Items.Commands
                     st = item.st,
                     stat = item.stat,
                     tpl = item.tpl,
-                    rarity = getItemRarity(item),
+                    rarity = (char)getItemRarity(item),
                     lastFetchDate = DateTime.Now,
                     fetchDate = DateTime.Now
                 });
             }
 
             return await _itemRepository.InsertItems(itemsToInsert);
+        }
+
+        private bool CheckIfValidItem(ItemDTO item)
+        {
+            var rarity = getItemRarity(item);
+            if (rarity == RarityEnum.Artifact
+                || rarity == RarityEnum.Legend
+                || (isEventOrAuctionItem(item) && rarity != RarityEnum.Normal))
+            {
+                return true;
+            }
+            return false;
         }
 
         private RarityEnum getItemRarity(ItemDTO item)
