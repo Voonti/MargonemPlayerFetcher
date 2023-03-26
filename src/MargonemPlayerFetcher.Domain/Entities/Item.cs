@@ -21,7 +21,7 @@ namespace MargonemPlayerFetcher.Domain.Entities
         public int st { get; set; }
         public string stat { get; set; }
         public int tpl { get; set; }
-        public string rarity { get; set; }
+        public char rarity { get; set; }
         public DateTime lastFetchDate { get; set; }
         public DateTime fetchDate { get; set; }
     }

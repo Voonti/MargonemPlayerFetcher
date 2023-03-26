@@ -1,6 +1,7 @@
 ﻿using MargonemPlayerFetcher.Domain.Entities;
 using MargonemPlayerFetcher.Domain.Interfaces;
 using MargonemPlayerFetcher.Infrastructure.DbContexts;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,11 @@ namespace MargonemPlayerFetcher.Infrastructure.Repositories
         public PlayerRepository(MargoDbContext margoDbContext)
         {
             _margoDbContext = margoDbContext;
+        }
+
+        public async Task<IEnumerable<Player>> GetAllPlayers()
+        {
+            return await _margoDbContext.Players.AsNoTracking().ToListAsync();
         }
 
         public async Task<bool> InsertPlayer(Player player)

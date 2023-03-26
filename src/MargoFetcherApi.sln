@@ -23,7 +23,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MargonemPlayerFetcher.Infra
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GatewayAPI", "GatewayAPI", "{37D67080-9D47-4BFD-B567-937D992AD60E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GatewayAPI", "GatewayAPI\GatewayAPI\GatewayAPI.csproj", "{29E2EC4A-5141-4F31-B690-405985924CDD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GatewayAPI", "GatewayAPI\GatewayAPI\GatewayAPI.csproj", "{29E2EC4A-5141-4F31-B690-405985924CDD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

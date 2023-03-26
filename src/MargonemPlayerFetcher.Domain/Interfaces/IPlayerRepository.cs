@@ -10,5 +10,6 @@ namespace MargonemPlayerFetcher.Domain.Interfaces
     public interface IPlayerRepository
     {
         public Task<bool> InsertPlayer(Player player);
+        public Task<IEnumerable<Player>> GetAllPlayers();
     }
 }

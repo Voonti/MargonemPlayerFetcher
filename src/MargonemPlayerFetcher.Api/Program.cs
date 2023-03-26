@@ -9,6 +9,7 @@ using MargonemPlayerFetcher.Infrastructure.DbContexts;
 using MargonemPlayerFetcher.Infrastructure.Middleware.ErrorHandlingMiddleware;
 using FluentValidation.AspNetCore;
 using MargonemPlayerFetcher.Domain.Validators;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,7 +17,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Meetings.Api", Version = "v1" });
+});
 
 builder.Services.AddFetcherService();
 
@@ -24,14 +29,13 @@ builder.Services.AddDbContext<MargoDbContext>(o =>
 {
     o.UseSqlServer(builder.Configuration.GetConnectionString("MargoDB"));
 });
-//builder.Services.AddMediatR(AppDomain.CurrentDomain.GetAssemblies());
 
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Meetings.Api v1"));
 }
 
 app.UseMiddleware<ExceptionHandlingMiddleware>();

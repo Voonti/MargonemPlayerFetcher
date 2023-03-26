@@ -19,6 +19,11 @@ namespace MargonemPlayerFetcher.Infrastructure.Repositories
             _margoDbContext = margoDbContext;
         }
 
+        public async Task<bool> CheckIfItemExist(string hid)
+        {
+            return await _margoDbContext.Items.AnyAsync(x => x.hid == hid);
+        }
+
         public async Task<Item> GetItemsByHid(string hid)
         {
             return await _margoDbContext.Items.FirstOrDefaultAsync(x => x.hid == hid);
@@ -28,6 +33,15 @@ namespace MargonemPlayerFetcher.Infrastructure.Repositories
         {
             await _margoDbContext.Items.AddRangeAsync(items);
             return await _margoDbContext.SaveChangesAsync() > 0;
+        }
+
+        public async Task UpdateFetchDate(string hid, int charId)
+        {
+            var entity = await _margoDbContext.Items.FirstAsync(x =>
+                x.hid == hid &&
+                x.charId == charId);
+
+            entity.lastFetchDate = DateTime.Now;
         }
     }
 }
