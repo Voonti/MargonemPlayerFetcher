@@ -28,5 +28,14 @@ namespace MargonemPlayerFetcher.Infrastructure.Repositories
             await _margoDbContext.AddAsync(player);
             return await _margoDbContext.SaveChangesAsync() > 0;
         }
+        public async Task<bool> UpdatePlayersLevel(Player player)
+        {
+            var entity = await _margoDbContext.Players.FirstAsync(x =>
+                x.userId == player.userId &&
+                x.charId == player.charId);
+
+            entity.level = player.level;
+            return await _margoDbContext.SaveChangesAsync() > 0;
+        }
     }
 }

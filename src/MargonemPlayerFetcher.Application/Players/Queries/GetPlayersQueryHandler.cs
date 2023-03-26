@@ -1,4 +1,6 @@
-﻿using MargonemPlayerFetcher.Domain.Entities;
+﻿using Common;
+using MargoFetcher.Domain.Exceptions;
+using MargonemPlayerFetcher.Domain.Entities;
 using MargonemPlayerFetcher.Domain.Interfaces;
 using MediatR;
 using System;
@@ -23,6 +25,10 @@ namespace MargoFetcher.Application.Players.Queries
         public async Task<GetPlayersResult> Handle(GetPlayersQuery request, CancellationToken cancellationToken)
         {
             var result = await _playerRepository.GetAllPlayers();
+
+            if (result == null)
+                throw new PlayerNotFoundException(ExceptionsMessages.PlayerNotFound);
+
             return new GetPlayersResult(result);
         }
     }

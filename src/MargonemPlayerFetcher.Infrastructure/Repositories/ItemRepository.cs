@@ -1,4 +1,5 @@
-﻿using MargonemPlayerFetcher.Domain.Entities;
+﻿using MargonemPlayerFetcher.Domain.DTO;
+using MargonemPlayerFetcher.Domain.Entities;
 using MargonemPlayerFetcher.Domain.Interfaces;
 using MargonemPlayerFetcher.Infrastructure.DbContexts;
 using Microsoft.EntityFrameworkCore;
@@ -35,13 +36,14 @@ namespace MargonemPlayerFetcher.Infrastructure.Repositories
             return await _margoDbContext.SaveChangesAsync() > 0;
         }
 
-        public async Task UpdateFetchDate(string hid, int charId)
+        public async Task UpdateFetchDate(string hid, int charId, DateTime updateDate)
         {
             var entity = await _margoDbContext.Items.FirstAsync(x =>
                 x.hid == hid &&
                 x.charId == charId);
 
             entity.lastFetchDate = DateTime.Now;
+            await _margoDbContext.SaveChangesAsync();
         }
     }
 }

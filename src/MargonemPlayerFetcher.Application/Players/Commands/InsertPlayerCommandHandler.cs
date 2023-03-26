@@ -1,4 +1,6 @@
-﻿using MargonemPlayerFetcher.Domain.DTO;
+﻿using Common;
+using MargoFetcher.Domain.Exceptions;
+using MargonemPlayerFetcher.Domain.DTO;
 using MargonemPlayerFetcher.Domain.Entities;
 using MargonemPlayerFetcher.Domain.Interfaces;
 using MediatR;
@@ -21,6 +23,11 @@ namespace MargonemPlayerFetcher.Application.Players.Commands
         }
         public async Task<bool> Handle(InsertPlayerCommand request, CancellationToken cancellationToken)
         {
+            if (CheckIfValid(request.player))
+            {
+                throw new InvalidPlayerLevelException(ExceptionsMessages.InvalidPlayerLevel);
+            }
+
             var player = new Player()
             {
                 charId = request.player.charId,
@@ -33,6 +40,13 @@ namespace MargonemPlayerFetcher.Application.Players.Commands
             };
 
             return await _playerRepository.InsertPlayer(player);
+        }
+
+        private bool CheckIfValid(PlayerDTO player)
+        {
+            if (player.level < GlobalParameters.PLAYERS_MIN_LVL)
+                return false;
+            return true;
         }
     }
 }
