@@ -1,12 +1,12 @@
-﻿using MargonemPlayerFetcher.Application.Items.Queries;
-using MargonemPlayerFetcher.Application.Items.Commands;
-using MargonemPlayerFetcher.Domain.DTO;
-using MargonemPlayerFetcher.Domain.Entities;
-using MargonemPlayerFetcher.Domain.Interfaces;
+﻿using MargoFetcher.Application.Items.Queries;
+using MargoFetcher.Application.Items.Commands;
+using MargoFetcher.Domain.DTO;
+using MargoFetcher.Domain.Entities;
+using MargoFetcher.Domain.Interfaces;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
-namespace MargonemPlayerFetcherApi.Controllers
+namespace MargoFetcherApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

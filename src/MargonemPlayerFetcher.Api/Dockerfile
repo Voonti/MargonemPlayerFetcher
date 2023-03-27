@@ -7,16 +7,16 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["MargonemPlayerFetcher.Api/MargonemPlayerFetcher.Api.csproj", "MargonemPlayerFetcher.Api/"]
-RUN dotnet restore "MargonemPlayerFetcher.Api/MargonemPlayerFetcher.Api.csproj"
+COPY ["MargoFetcher.Api/MargoFetcher.Api.csproj", "MargoFetcher.Api/"]
+RUN dotnet restore "MargoFetcher.Api/MargoFetcher.Api.csproj"
 COPY . .
-WORKDIR "/src/MargonemPlayerFetcher.Api"
-RUN dotnet build "MargonemPlayerFetcher.Api.csproj" -c Release -o /app/build
+WORKDIR "/src/MargoFetcher.Api"
+RUN dotnet build "MargoFetcher.Api.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "MargonemPlayerFetcher.Api.csproj" -c Release -o /app/publish
+RUN dotnet publish "MargoFetcher.Api.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "MargonemPlayerFetcher.Api.dll"]
+ENTRYPOINT ["dotnet", "MargoFetcher.Api.dll"]

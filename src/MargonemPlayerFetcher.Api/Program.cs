@@ -1,15 +1,16 @@
-using MargonemPlayerFetcher.Domain.Interfaces;
-using MargonemPlayerFetcher.Infrastructure.Repositories;
+using MargoFetcher.Domain.Interfaces;
+using MargoFetcher.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 using MediatR;
-using MargonemPlayerFetcher.Application.IoC;
-using MargonemPlayerFetcher.Infrastructure.DbContexts;
-using MargonemPlayerFetcher.Infrastructure.Middleware.ErrorHandlingMiddleware;
+using MargoFetcher.Infrastructure.DbContexts;
+using MargoFetcher.Infrastructure.Middleware.ErrorHandlingMiddleware;
 using FluentValidation.AspNetCore;
-using MargonemPlayerFetcher.Domain.Validators;
+using MargoFetcher.Domain.Validators;
 using Microsoft.OpenApi.Models;
+using MargoFetcher.Infrastructure.IoC;
+using Hangfire;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,13 +23,11 @@ builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "Meetings.Api", Version = "v1" });
 });
+var connectionString = builder.Configuration.GetConnectionString("MargoDB");
+builder.Services.AddFetcherService(connectionString);
+builder.Services.AddJobsService(connectionString);
 
-builder.Services.AddFetcherService();
 
-builder.Services.AddDbContext<MargoDbContext>(o =>
-{
-    o.UseSqlServer(builder.Configuration.GetConnectionString("MargoDB"));
-});
 
 var app = builder.Build();
 
@@ -36,6 +35,7 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Meetings.Api v1"));
+    app.UseHangfireDashboard();
 }
 
 app.UseMiddleware<ExceptionHandlingMiddleware>();

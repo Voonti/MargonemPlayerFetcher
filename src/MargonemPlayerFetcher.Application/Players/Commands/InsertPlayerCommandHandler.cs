@@ -1,8 +1,8 @@
 ﻿using Common;
 using MargoFetcher.Domain.Exceptions;
-using MargonemPlayerFetcher.Domain.DTO;
-using MargonemPlayerFetcher.Domain.Entities;
-using MargonemPlayerFetcher.Domain.Interfaces;
+using MargoFetcher.Domain.DTO;
+using MargoFetcher.Domain.Entities;
+using MargoFetcher.Domain.Interfaces;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MargonemPlayerFetcher.Application.Players.Commands
+namespace MargoFetcher.Application.Players.Commands
 {
     public record InsertPlayerCommand(PlayerDTO player) : IRequest<bool>;
     public class InsertPlayerCommandHandler : IRequestHandler<InsertPlayerCommand, bool>

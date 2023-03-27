@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MargonemPlayerFetcher.Domain.DTO
+namespace MargoFetcher.Domain.DTO
 {
     public class PlayerDTO
     {

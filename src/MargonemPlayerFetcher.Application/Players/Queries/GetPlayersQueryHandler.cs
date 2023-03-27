@@ -1,7 +1,7 @@
 ﻿using Common;
 using MargoFetcher.Domain.Exceptions;
-using MargonemPlayerFetcher.Domain.Entities;
-using MargonemPlayerFetcher.Domain.Interfaces;
+using MargoFetcher.Domain.Entities;
+using MargoFetcher.Domain.Interfaces;
 using MediatR;
 using System;
 using System.Collections.Generic;

@@ -1,10 +1,10 @@
 ﻿using MargoFetcher.Application.Players.Queries;
-using MargonemPlayerFetcher.Application.Players.Commands;
-using MargonemPlayerFetcher.Domain.DTO;
+using MargoFetcher.Application.Players.Commands;
+using MargoFetcher.Domain.DTO;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
-namespace MargonemPlayerFetcherApi.Controllers
+namespace MargoFetcherApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -28,7 +28,7 @@ namespace MargonemPlayerFetcherApi.Controllers
             return Ok();
         }
 
-        [HttpPost]
+        [HttpGet]
         public async Task<IActionResult> GetAllPlayers()
         {
             var query = new GetPlayersQuery();

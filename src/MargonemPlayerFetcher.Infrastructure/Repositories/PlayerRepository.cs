@@ -1,6 +1,6 @@
-﻿using MargonemPlayerFetcher.Domain.Entities;
-using MargonemPlayerFetcher.Domain.Interfaces;
-using MargonemPlayerFetcher.Infrastructure.DbContexts;
+﻿using MargoFetcher.Domain.Entities;
+using MargoFetcher.Domain.Interfaces;
+using MargoFetcher.Infrastructure.DbContexts;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MargonemPlayerFetcher.Infrastructure.Repositories
+namespace MargoFetcher.Infrastructure.Repositories
 {
     public class PlayerRepository : IPlayerRepository
     {

@@ -5,7 +5,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MargonemPlayerFetcher.Domain.Exceptions
+namespace MargoFetcher.Domain.Exceptions
 {
     public abstract class DomainException : ResponseException
     {

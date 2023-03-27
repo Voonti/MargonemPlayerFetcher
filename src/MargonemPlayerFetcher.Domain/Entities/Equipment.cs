@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MargonemPlayerFetcher.Domain.Entities
+namespace MargoFetcher.Domain.Entities
 {
     public class Equipment
     {

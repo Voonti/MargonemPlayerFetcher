@@ -4,12 +4,12 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
-using MargonemPlayerFetcher.Domain.Exceptions;
+using MargoFetcher.Domain.Exceptions;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 
-namespace MargonemPlayerFetcher.Infrastructure.Middleware.ErrorHandlingMiddleware
+namespace MargoFetcher.Infrastructure.Middleware.ErrorHandlingMiddleware
 {
     public class ExceptionHandlingMiddleware
     {

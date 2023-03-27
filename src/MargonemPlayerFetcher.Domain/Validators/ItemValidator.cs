@@ -1,12 +1,12 @@
 ﻿using FluentValidation;
-using MargonemPlayerFetcher.Domain.Entities;
+using MargoFetcher.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MargonemPlayerFetcher.Domain.Validators
+namespace MargoFetcher.Domain.Validators
 {
     public class ItemValidator : AbstractValidator<Item>
     {

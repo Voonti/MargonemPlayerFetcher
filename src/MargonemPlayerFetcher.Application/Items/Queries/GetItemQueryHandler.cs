@@ -1,7 +1,7 @@
 ﻿using Common;
 using MargoFetcher.Domain.Exceptions;
-using MargonemPlayerFetcher.Domain.Entities;
-using MargonemPlayerFetcher.Domain.Interfaces;
+using MargoFetcher.Domain.Entities;
+using MargoFetcher.Domain.Interfaces;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MargonemPlayerFetcher.Application.Items.Queries
+namespace MargoFetcher.Application.Items.Queries
 {
     public record GetItemQuery(string hid) : IRequest<GetItemResult>;
     public record GetItemResult(Item item);

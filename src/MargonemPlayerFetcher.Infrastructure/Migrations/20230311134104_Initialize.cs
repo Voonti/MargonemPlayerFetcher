@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace MargonemPlayerFetcher.Infrastructure.Migrations
+namespace MargoFetcher.Infrastructure.Migrations
 {
     /// <inheritdoc />
     public partial class Initialize : Migration

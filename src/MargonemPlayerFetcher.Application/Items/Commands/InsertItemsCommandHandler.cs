@@ -1,7 +1,7 @@
 ﻿using MargoFetcher.Domain.Enums;
-using MargonemPlayerFetcher.Domain.DTO;
-using MargonemPlayerFetcher.Domain.Entities;
-using MargonemPlayerFetcher.Domain.Interfaces;
+using MargoFetcher.Domain.DTO;
+using MargoFetcher.Domain.Entities;
+using MargoFetcher.Domain.Interfaces;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -10,7 +10,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace MargonemPlayerFetcher.Application.Items.Commands
+namespace MargoFetcher.Application.Items.Commands
 {
     public record InsertItemCommand(IEnumerable<ItemDTO> items) : IRequest<bool>;
     public class InsertItemsCommandHandler : IRequestHandler<InsertItemCommand, bool>
