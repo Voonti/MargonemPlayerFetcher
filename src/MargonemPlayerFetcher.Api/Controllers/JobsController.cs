@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Hangfire;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MargoFetcher.Api.Controllers
@@ -7,8 +8,13 @@ namespace MargoFetcher.Api.Controllers
     [ApiController]
     public class JobsController : ControllerBase
     {
+        private readonly IBackgroundJobClient _backgroundJobClient;
+        public JobsController(IBackgroundJobClient backgroundJobClient)
+        {
+            _backgroundJobClient = backgroundJobClient;
+        }
         [HttpPost]
-        public async Task<IActionResult> ExecuteSync()
+        public async Task<IActionResult> ExecuteEqSync()
         {
             return Ok();
         }
