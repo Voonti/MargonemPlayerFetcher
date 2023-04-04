@@ -1,4 +1,8 @@
 ﻿using Hangfire;
+using MargoFetcher.Application.Jobs;
+using MargoFetcher.Application.Jobs.Commands;
+using MargoFetcher.Infrastructure.Services;
+using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,15 +13,22 @@ namespace MargoFetcher.Api.Controllers
     public class JobsController : ControllerBase
     {
         private readonly IBackgroundJobClient _backgroundJobClient;
-        public JobsController(IBackgroundJobClient backgroundJobClient)
+        private readonly IMediator _mediator;
+
+        public JobsController(
+            IBackgroundJobClient backgroundJobClient,
+            IMediator mediator)
         {
             _backgroundJobClient = backgroundJobClient;
-        }
-        [HttpPost]
-        public async Task<IActionResult> ExecuteEqSync()
-        {
-            return Ok();
+            _mediator = mediator;
+
         }
 
+        [HttpPost("EqSync")]
+        public async Task<IActionResult> ExecuteEqSync()
+        {
+            await  _mediator.Send(new SyncEqCommand());
+            return Ok();
+        }
     }
 }

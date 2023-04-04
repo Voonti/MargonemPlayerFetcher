@@ -16,5 +16,6 @@ namespace MargoFetcher.Infrastructure.DbContexts
         }
         public DbSet<Player> Players { get; set; }
         public DbSet<Item> Items { get; set; }
+        public DbSet<Server> Servers { get; set; }
     }
 }

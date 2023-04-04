@@ -12,8 +12,8 @@ using System.Threading.Tasks;
 
 namespace MargoFetcher.Application.Players.Commands
 {
-    public record InsertPlayerCommand(PlayerDTO player) : IRequest<bool>;
-    public class InsertPlayerCommandHandler : IRequestHandler<InsertPlayerCommand, bool>
+    public record InsertPlayerCommand(PlayerDTO player) : IRequest<Unit>;
+    public class InsertPlayerCommandHandler : IRequestHandler<InsertPlayerCommand>
     {
         private readonly IPlayerRepository _playerRepository;
         public InsertPlayerCommandHandler(
@@ -21,7 +21,7 @@ namespace MargoFetcher.Application.Players.Commands
         {
             _playerRepository = playerRepository;
         }
-        public async Task<bool> Handle(InsertPlayerCommand request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(InsertPlayerCommand request, CancellationToken cancellationToken)
         {
             if (CheckIfValid(request.player))
             {
@@ -39,7 +39,8 @@ namespace MargoFetcher.Application.Players.Commands
                 level = request.player.level
             };
 
-            return await _playerRepository.InsertPlayer(player);
+            await _playerRepository.InsertPlayer(player);
+            return Unit.Value;
         }
 
         private bool CheckIfValid(PlayerDTO player)

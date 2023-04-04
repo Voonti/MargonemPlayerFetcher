@@ -11,6 +11,7 @@ using MargoFetcher.Domain.Validators;
 using Microsoft.OpenApi.Models;
 using MargoFetcher.Infrastructure.IoC;
 using Hangfire;
+using MargoFetcher.Application.Items.Commands;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,7 +27,7 @@ builder.Services.AddSwaggerGen(c =>
 var connectionString = builder.Configuration.GetConnectionString("MargoDB");
 builder.Services.AddFetcherService(connectionString);
 builder.Services.AddJobsService(connectionString);
-
+builder.Services.AddMediatR(typeof(InsertItemsCommandHandler).Assembly);
 
 
 var app = builder.Build();

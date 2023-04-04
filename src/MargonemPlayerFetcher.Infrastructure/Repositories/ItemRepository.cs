@@ -20,9 +20,12 @@ namespace MargoFetcher.Infrastructure.Repositories
             _margoDbContext = margoDbContext;
         }
 
-        public async Task<bool> CheckIfItemExist(string hid)
+        public async Task<bool> CheckIfItemExist(int userId, int charId, string hid)
         {
-            return await _margoDbContext.Items.AnyAsync(x => x.hid == hid);
+            return await _margoDbContext.Items.AnyAsync(x => 
+                x.userId == userId
+                && x.charId == charId
+                && x.hid == hid);
         }
 
         public async Task<Item> GetItemsByHid(string hid)
@@ -30,13 +33,13 @@ namespace MargoFetcher.Infrastructure.Repositories
             return await _margoDbContext.Items.FirstOrDefaultAsync(x => x.hid == hid);
         }
 
-        public async Task<bool> InsertItems(IEnumerable<Item> items)
+        public async Task InsertItem(Item item)
         {
-            await _margoDbContext.Items.AddRangeAsync(items);
-            return await _margoDbContext.SaveChangesAsync() > 0;
+            await _margoDbContext.Items.AddAsync(item);
+            await _margoDbContext.SaveChangesAsync();
         }
 
-        public async Task UpdateFetchDate(string hid, int charId, DateTime updateDate)
+        public async Task UpdateFetchDate(string hid, int charId)
         {
             var entity = await _margoDbContext.Items.FirstAsync(x =>
                 x.hid == hid &&

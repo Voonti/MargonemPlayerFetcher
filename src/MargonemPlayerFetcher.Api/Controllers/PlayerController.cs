@@ -29,9 +29,9 @@ namespace MargoFetcherApi.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllPlayers()
+        public async Task<IActionResult> GetAllPlayers([FromRoute] string server)
         {
-            var query = new GetPlayersQuery();
+            var query = new GetPlayersQuery(server);
 
             return Ok(await _mediator.Send(query));
         }

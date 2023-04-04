@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace MargoFetcher.Application.Players.Queries
 {
-    public record GetPlayersQuery() : IRequest<GetPlayersResult>;
+    public record GetPlayersQuery(string server) : IRequest<GetPlayersResult>;
     public record GetPlayersResult(IEnumerable<Player> players);
     public class GetPlayersQueryHandler : IRequestHandler<GetPlayersQuery, GetPlayersResult>
     {
@@ -24,7 +24,7 @@ namespace MargoFetcher.Application.Players.Queries
 
         public async Task<GetPlayersResult> Handle(GetPlayersQuery request, CancellationToken cancellationToken)
         {
-            var result = await _playerRepository.GetAllPlayers();
+            var result = await _playerRepository.GetAllPlayersByServer(request.server);
 
             if (result == null)
                 throw new PlayerNotFoundException(ExceptionsMessages.PlayerNotFound);

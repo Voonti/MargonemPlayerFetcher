@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MargoFetcher.Application.Jobs.Jobs;
 
 namespace MargoFetcher.Infrastructure.IoC
 {
@@ -26,7 +27,7 @@ namespace MargoFetcher.Infrastructure.IoC
                 }));
 
             services.AddHangfireServer();
-
+            services.AddScoped<SyncEq>();
             return services;
         }
     }

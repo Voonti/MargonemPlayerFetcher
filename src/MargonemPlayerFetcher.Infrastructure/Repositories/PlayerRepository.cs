@@ -18,15 +18,23 @@ namespace MargoFetcher.Infrastructure.Repositories
             _margoDbContext = margoDbContext;
         }
 
-        public async Task<IEnumerable<Player>> GetAllPlayers()
+        public async Task<IEnumerable<Player>> GetAllPlayersByServer(string server)
         {
-            return await _margoDbContext.Players.AsNoTracking().ToListAsync();
+            return await _margoDbContext.Players
+                .AsNoTracking()
+                .Where(x => x.server == server)
+                .ToListAsync();
         }
 
-        public async Task<bool> InsertPlayer(Player player)
+        public async Task<IEnumerable<Server>> GetServers()
+        {
+            return await _margoDbContext.Servers.ToListAsync();
+        }
+
+        public async Task InsertPlayer(Player player)
         {
             await _margoDbContext.AddAsync(player);
-            return await _margoDbContext.SaveChangesAsync() > 0;
+            await _margoDbContext.SaveChangesAsync() ;
         }
         public async Task<bool> UpdatePlayersLevel(Player player)
         {

@@ -12,8 +12,8 @@ using System.Threading.Tasks;
 
 namespace MargoFetcher.Application.Items.Commands
 {
-    public record InsertItemCommand(IEnumerable<ItemDTO> items) : IRequest<bool>;
-    public class InsertItemsCommandHandler : IRequestHandler<InsertItemCommand, bool>
+    public record InsertItemCommand(IEnumerable<ItemDTO> items) : IRequest<Unit>;
+    public class InsertItemsCommandHandler : IRequestHandler<InsertItemCommand>
     {
         private readonly Regex eventRegex = new Regex("[0-9][0-9][0-9][0-9]");
         private readonly Regex licytRegex = new Regex("(Licytacja)");
@@ -23,9 +23,8 @@ namespace MargoFetcher.Application.Items.Commands
         {
             _itemRepository = itemRepository;
         }
-        public async Task<bool> Handle(InsertItemCommand request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(InsertItemCommand request, CancellationToken cancellationToken)
         {
-            var itemsToInsert = new List<Item>();
             foreach (var item in request.items)
             {
                 if (!CheckIfValidItem(item))
@@ -33,7 +32,7 @@ namespace MargoFetcher.Application.Items.Commands
                     continue;
                 }
 
-                itemsToInsert.Add(new Item()
+                var itemToInsert = new Item()
                 {
                     userId = item.userId,
                     charId = item.charId,
@@ -46,10 +45,12 @@ namespace MargoFetcher.Application.Items.Commands
                     rarity = (char)getItemRarity(item),
                     lastFetchDate = DateTime.Now,
                     fetchDate = DateTime.Now
-                });
+                };
+
+                await _itemRepository.InsertItem(itemToInsert);
             }
 
-            return await _itemRepository.InsertItems(itemsToInsert);
+            return Unit.Value;
         }
 
         private bool CheckIfValidItem(ItemDTO item)

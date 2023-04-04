@@ -9,7 +9,8 @@ namespace MargoFetcher.Domain.Interfaces
 {
     public interface IPlayerRepository
     {
-        public Task<bool> InsertPlayer(Player player);
-        public Task<IEnumerable<Player>> GetAllPlayers();
+        public Task InsertPlayer(Player player);
+        public Task<IEnumerable<Player>> GetAllPlayersByServer(string server);
+        public Task<IEnumerable<Server>> GetServers();
     }
 }

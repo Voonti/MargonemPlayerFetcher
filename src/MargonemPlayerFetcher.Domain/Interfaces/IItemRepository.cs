@@ -9,11 +9,11 @@ namespace MargoFetcher.Domain.Interfaces
 {
     public interface IItemRepository
     {
-        public Task<bool> InsertItems(IEnumerable<Item> items);
+        public Task InsertItem(Item item);
 
-        public Task UpdateFetchDate(string hid, int charId, DateTime updateDate);
+        public Task UpdateFetchDate(string hid, int charId);
         public Task<Item> GetItemsByHid(string hid);
 
-        public Task<bool> CheckIfItemExist(string hid);
+        public Task<bool> CheckIfItemExist(int userId, int charId, string hid);
     }
 }

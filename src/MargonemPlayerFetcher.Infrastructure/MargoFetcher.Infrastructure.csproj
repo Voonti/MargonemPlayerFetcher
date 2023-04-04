@@ -18,9 +18,11 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.3" />
+    <PackageReference Include="System.Collections" Version="4.3.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\MargonemPlayerFetcher.Application\MargoFetcher.Application.csproj" />
     <ProjectReference Include="..\MargonemPlayerFetcher.Domain\MargoFetcher.Domain.csproj" />
   </ItemGroup>
 

@@ -15,4 +15,8 @@
     <ProjectReference Include="..\Common\Common\Common.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ValueObjects\" />
+  </ItemGroup>
+
 </Project>

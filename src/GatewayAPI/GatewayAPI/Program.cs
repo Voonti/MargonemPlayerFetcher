@@ -31,10 +31,6 @@ if (app.Environment.IsDevelopment())
         opt.PathToSwaggerGenerator = "/swagger/docs";
     }).UseOcelot().Wait();
 }
-else
-{
-    app.UseOcelot().Wait();
-}
 
 
 app.UseHttpsRedirection();
