@@ -30,5 +30,12 @@ namespace MargoFetcher.Api.Controllers
             await  _mediator.Send(new SyncEqCommand());
             return Ok();
         }
+
+        [HttpPost("PlayerSync")]
+        public async Task<IActionResult> ExecutePlayerSync()
+        {
+            await _mediator.Send(new SyncPlayerCommand());
+            return Ok();
+        }
     }
 }

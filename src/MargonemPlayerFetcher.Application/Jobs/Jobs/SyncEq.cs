@@ -8,6 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Common;
 using MargoFetcher.Domain.Enums;
+using Hangfire;
+using System.ComponentModel;
+using Hangfire.States;
 
 namespace MargoFetcher.Application.Jobs.Jobs
 {
@@ -26,27 +29,25 @@ namespace MargoFetcher.Application.Jobs.Jobs
             _garmoryApiService = garmoryApiService;
         }
 
-        public async Task Execute()
+        //[AutomaticRetry(Attempts = 1)]
+        [JobDisplayName("{0}")]
+        public async Task Execute(string server)
         {
-            var servers = await _playerRepository.GetServers();
+            var players = (await _playerRepository.GetAllPlayersByServer(server));
 
-            foreach (var server in servers)
-            { 
-                var players = (await _playerRepository.GetAllPlayersByServer(server.ServerName)).Take(1);
+            int maxCounter = players.Count();
+            int conuter = 0;
 
-                int maxCounter = players.Count();
-                int conuter = 0;
-
-                var tasks = new List<Task>();
-                foreach (var player in players)
-                {
-                    var task = FetchAndSync(player, conuter, maxCounter);
-                    tasks.Add(task);
-                    conuter++;
-                }
-
-                await Task.WhenAll(tasks);
+            //var tasks = new List<Task>();
+            foreach (var player in players)
+            {
+                await FetchAndSync(player, conuter, maxCounter);
+                //var task = FetchAndSync(player, conuter, maxCounter);
+                //tasks.Add(task);
+                //conuter++;
             }
+
+            //await Task.WhenAll(tasks);
         }
 
         private async Task FetchAndSync(Player player, int counter, int maxCounter)

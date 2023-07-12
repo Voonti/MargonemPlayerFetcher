@@ -10,5 +10,6 @@ namespace MargoFetcher.Domain.Interfaces
     public interface IGarmoryApiService
     {
         public Task<Dictionary<string, Item>> FetchPlayerItems(Player player);
+        public Task<IEnumerable<Player>> FetchPlayers(string server);
     }
 }

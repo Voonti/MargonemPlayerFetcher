@@ -28,6 +28,7 @@ namespace MargoFetcher.Infrastructure.IoC
 
             services.AddHangfireServer();
             services.AddScoped<SyncEq>();
+            services.AddScoped<SyncPlayer>();
             return services;
         }
     }

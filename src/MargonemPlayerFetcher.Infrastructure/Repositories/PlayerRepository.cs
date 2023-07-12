@@ -18,6 +18,13 @@ namespace MargoFetcher.Infrastructure.Repositories
             _margoDbContext = margoDbContext;
         }
 
+        public async Task<bool> CheckIfPlayerExist(Player player)
+        {
+            return await _margoDbContext.Players.AnyAsync(x =>
+                x.userId == player.userId &&
+                x.charId == player.charId);
+        }
+
         public async Task<IEnumerable<Player>> GetAllPlayersByServer(string server)
         {
             return await _margoDbContext.Players
@@ -29,6 +36,14 @@ namespace MargoFetcher.Infrastructure.Repositories
         public async Task<IEnumerable<Server>> GetServers()
         {
             return await _margoDbContext.Servers.ToListAsync();
+        }
+
+        public async Task<bool> HasPlayerLevelChanged(Player player)
+        {
+            var currentPlayer = await _margoDbContext.Players.AsNoTracking().FirstAsync(x =>
+                x.userId == player.userId &&
+                x.charId == player.charId);
+            return currentPlayer.level != player.level;
         }
 
         public async Task InsertPlayer(Player player)

@@ -14,19 +14,27 @@ namespace MargoFetcher.Application.Jobs.Commands
     public class SyncEqCommandHandler : IRequestHandler<SyncEqCommand>
     {
         private readonly IBackgroundJobClient _backgroundJobClient;
+        private readonly IPlayerRepository _playerRepository;
         private readonly SyncEq _syncEq;
 
         public SyncEqCommandHandler(
             IBackgroundJobClient backgroundJobClient,
+            IPlayerRepository playerRepository,
             SyncEq syncEq)
         {
-            _syncEq = syncEq;
             _backgroundJobClient = backgroundJobClient;
+            _playerRepository = playerRepository;
+            _syncEq = syncEq;
+
         }
 
         public async Task<Unit> Handle(SyncEqCommand request, CancellationToken cancellationToken)
         {
-            _backgroundJobClient.Enqueue(() => _syncEq.Execute());
+            var servers = await _playerRepository.GetServers();
+            foreach (var server in servers)
+            {
+                _backgroundJobClient.Enqueue(() => _syncEq.Execute(server.ServerName));
+            }
             return Unit.Value;
         }
     }

@@ -37,7 +37,7 @@ namespace MargoFetcher.Infrastructure.Services
             return JsonConvert.DeserializeObject<Dictionary<string, Item>>(content);
         }
 
-        public async Task FetchPlayers(string server)
+        public async Task<IEnumerable<Player>> FetchPlayers(string server)
         {
             var query = $"{server}.json";
 
@@ -52,6 +52,8 @@ namespace MargoFetcher.Infrastructure.Services
             var tasks = players.Select(i => AssignServer(i, server));
 
             await Task.WhenAll(tasks);
+
+            return players;
         }
 
         private async Task AssignServer(Player player, string server)

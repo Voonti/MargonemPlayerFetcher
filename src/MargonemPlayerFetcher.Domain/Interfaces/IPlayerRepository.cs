@@ -12,5 +12,8 @@ namespace MargoFetcher.Domain.Interfaces
         public Task InsertPlayer(Player player);
         public Task<IEnumerable<Player>> GetAllPlayersByServer(string server);
         public Task<IEnumerable<Server>> GetServers();
+        public Task<bool> UpdatePlayersLevel(Player player);
+        public Task<bool> CheckIfPlayerExist(Player player);
+        public Task<bool> HasPlayerLevelChanged(Player player);
     }
 }
