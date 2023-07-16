@@ -3,14 +3,12 @@ using MargoFetcher.Infrastructure.Repositories;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 using MediatR;
-using FluentValidation;
-using MargoFetcher.Domain.Validators;
-using FluentValidation.AspNetCore;
 using MargoFetcher.Infrastructure.DbContexts;
 using Microsoft.EntityFrameworkCore;
 using MargoFetcher.Infrastructure.Services;
 using System.Net.Http.Headers;
 using Common;
+using MargoFetcher.Infrastructure.ConsolePrinter;
 
 namespace MargoFetcher.Infrastructure.IoC
 {
@@ -21,14 +19,12 @@ namespace MargoFetcher.Infrastructure.IoC
             services.AddScoped<IGarmoryApiService, GarmoryApiService>();
             services.AddScoped<IItemRepository, ItemRepository>();
             services.AddScoped<IPlayerRepository, PlayerRepository>();
-
-            services.AddFluentValidationAutoValidation();
-            services.AddValidatorsFromAssemblyContaining<ItemValidator>();
+            services.AddScoped<IPrinter, Printer>();
 
             services.AddDbContext<MargoDbContext>(o =>
             {
                 o.UseSqlServer(connectionString);
-            });
+            }, ServiceLifetime.Transient);
 
             services.AddHttpClient(GlobalParameters.ITEM_CLIENT, client =>
             {

@@ -10,10 +10,8 @@ namespace MargoFetcher.Domain.Interfaces
     public interface IItemRepository
     {
         public Task InsertItem(Item item);
-
-        public Task UpdateFetchDate(string hid, int charId);
-        public Task<Item> GetItemsByHid(string hid);
-
+        public Task UpdateFetchDate(Item item);
         public Task<bool> CheckIfItemExist(int userId, int charId, string hid);
+        public Task<int> GetDuplicatedItemsCount();
     }
 }

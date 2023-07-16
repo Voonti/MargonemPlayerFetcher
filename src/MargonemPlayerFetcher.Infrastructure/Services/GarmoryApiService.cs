@@ -9,16 +9,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Collections;
+using System.Net.Http;
+using Microsoft.Extensions.Http;
 
 namespace MargoFetcher.Infrastructure.Services
 {
     public class GarmoryApiService : IGarmoryApiService
     {
         private readonly IHttpClientFactory _httpClientFactory;
+        private readonly IPrinter _printer;
 
-        public GarmoryApiService(IHttpClientFactory httpClientFactory)
+        public GarmoryApiService(
+            IHttpClientFactory httpClientFactory,
+            IPrinter printer)
         {
             _httpClientFactory = httpClientFactory;
+            _printer = printer;
         }
         public async Task<Dictionary<string, Item>> FetchPlayerItems(Player player)
         {
@@ -39,21 +45,37 @@ namespace MargoFetcher.Infrastructure.Services
 
         public async Task<IEnumerable<Player>> FetchPlayers(string server)
         {
-            var query = $"{server}.json";
+                var query = $"{server}.json";
 
-            var httpClient = _httpClientFactory.CreateClient(GlobalParameters.PLAYER_CLIENT);
+                var httpClient = _httpClientFactory.CreateClient(GlobalParameters.PLAYER_CLIENT);
 
-            var response = await httpClient.GetAsync(query);
+                var response = await httpClient.GetAsync(query);
 
-            var content = await response.Content.ReadAsStringAsync();
+                var content = await response.Content.ReadAsStringAsync();
 
-            var players = JsonConvert.DeserializeObject<IEnumerable<Player>>(content);
+                var players = DeserializePlayers(content);
 
-            var tasks = players.Select(i => AssignServer(i, server));
+                if (players == null)
+                    return null;
 
-            await Task.WhenAll(tasks);
+                var tasks = players.Select(i => AssignServer(i, server));
 
-            return players;
+                await Task.WhenAll(tasks);
+
+                return players;
+        }
+
+        private IEnumerable<Player> DeserializePlayers(string content)
+        {
+            try
+            {
+                return JsonConvert.DeserializeObject<IEnumerable<Player>>(content);
+            }
+            catch (Exception ex)
+            {
+                _printer.PrintException(ex.Message);
+                return null;
+            }
         }
 
         private async Task AssignServer(Player player, string server)

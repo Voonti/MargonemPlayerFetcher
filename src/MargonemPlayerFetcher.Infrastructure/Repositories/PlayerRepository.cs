@@ -18,13 +18,6 @@ namespace MargoFetcher.Infrastructure.Repositories
             _margoDbContext = margoDbContext;
         }
 
-        public async Task<bool> CheckIfPlayerExist(Player player)
-        {
-            return await _margoDbContext.Players.AnyAsync(x =>
-                x.userId == player.userId &&
-                x.charId == player.charId);
-        }
-
         public async Task<IEnumerable<Player>> GetAllPlayersByServer(string server)
         {
             return await _margoDbContext.Players
@@ -33,32 +26,50 @@ namespace MargoFetcher.Infrastructure.Repositories
                 .ToListAsync();
         }
 
+        public async Task<int> GetDuplicatedPlayersCount()
+        {
+            return await _margoDbContext.Players
+                .GroupBy(m => new { m.userId, m.charId, m.server })
+                .Where(g => g.Count() > 1)
+                .Select(g => g.Key)
+                .CountAsync();
+        }
+
         public async Task<IEnumerable<Server>> GetServers()
         {
             return await _margoDbContext.Servers.ToListAsync();
         }
 
-        public async Task<bool> HasPlayerLevelChanged(Player player)
+        public async Task<int> GetTotalPlayerCount()
         {
-            var currentPlayer = await _margoDbContext.Players.AsNoTracking().FirstAsync(x =>
-                x.userId == player.userId &&
-                x.charId == player.charId);
-            return currentPlayer.level != player.level;
+            return await _margoDbContext.Players.CountAsync();
         }
 
-        public async Task InsertPlayer(Player player)
+        public async Task InsertPlayerIfNotExist(Player player)
         {
-            await _margoDbContext.AddAsync(player);
-            await _margoDbContext.SaveChangesAsync() ;
+            var currentPlayer = await _margoDbContext.Players.AnyAsync(x =>
+                x.userId == player.userId &&
+                x.charId == player.charId &&
+                x.server == player.server);
+
+            if(!currentPlayer)
+            {
+                await _margoDbContext.AddAsync(player);
+                await _margoDbContext.SaveChangesAsync();
+            }
         }
-        public async Task<bool> UpdatePlayersLevel(Player player)
+        public async Task UpdatePlayersLevel(Player player)
         {
             var entity = await _margoDbContext.Players.FirstAsync(x =>
                 x.userId == player.userId &&
-                x.charId == player.charId);
+                x.charId == player.charId &&
+                x.server == player.server);
 
-            entity.level = player.level;
-            return await _margoDbContext.SaveChangesAsync() > 0;
+            if (entity.level != player.level)
+            {
+                entity.level = player.level;
+                await _margoDbContext.SaveChangesAsync();
+            }
         }
     }
 }

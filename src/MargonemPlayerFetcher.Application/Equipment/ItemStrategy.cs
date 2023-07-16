@@ -6,10 +6,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MargoFetcher.Application.Jobs
+namespace MargoFetcher.Application.Equipment
 {
     public abstract class ItemStrategy
     {
-        public abstract Task HandleItem(Item items);
+        public abstract Task HandleItem(Item item);
     }
 }

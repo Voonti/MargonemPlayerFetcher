@@ -6,19 +6,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MargoFetcher.Application.Jobs
+namespace MargoFetcher.Application.Equipment
 {
     public class NotPresentItem : ItemStrategy
     {
         private readonly IItemRepository _itemRepository;
 
-        public NotPresentItem(IItemRepository itemRepository)
+        public NotPresentItem(
+            IItemRepository itemRepository)
         {
             _itemRepository = itemRepository;
         }
-        public override async Task HandleItem(Item items)
+        public override async Task HandleItem(Item item)
         {
-            await _itemRepository.InsertItem(items);
+            await _itemRepository.InsertItem(item);
         }
     }
 }

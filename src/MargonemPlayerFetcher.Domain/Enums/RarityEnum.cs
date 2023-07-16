@@ -12,6 +12,6 @@ namespace MargoFetcher.Domain.Enums
         Legend = 'l',
         Heroic = 'h',
         Unique = 'u',
-        Normal = 'n'
+        Common = 'c'
     }
 }

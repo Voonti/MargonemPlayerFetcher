@@ -9,11 +9,12 @@ namespace MargoFetcher.Domain.Interfaces
 {
     public interface IPlayerRepository
     {
-        public Task InsertPlayer(Player player);
+        public Task InsertPlayerIfNotExist(Player player);
         public Task<IEnumerable<Player>> GetAllPlayersByServer(string server);
         public Task<IEnumerable<Server>> GetServers();
-        public Task<bool> UpdatePlayersLevel(Player player);
-        public Task<bool> CheckIfPlayerExist(Player player);
-        public Task<bool> HasPlayerLevelChanged(Player player);
+        public Task UpdatePlayersLevel(Player player);
+        public Task<int> GetTotalPlayerCount();
+        public Task<int> GetDuplicatedPlayersCount();
+
     }
 }
