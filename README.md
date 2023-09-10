@@ -12,8 +12,8 @@ statistical analysis, data mining, and machine learning.
 
 
 1. Player 
-	- User Id (Player's unique identifier)
-	- Char Id (Character's unique identifier)
+	- User id (Player's unique identifier)
+	- Char id (Character's unique identifier)
 	- Nick (Characters nickname)
 	- Server
 	- Profession
@@ -25,11 +25,11 @@ statistical analysis, data mining, and machine learning.
 		- 32: Chat Moderator
 )
 	- Level
+	- LastFetchDate
+	- FirstFetchDate
 
 
 2. Item 
-	- User Id (Player's unique identifier)
-	- Char Id (Character's unique identifier)
 	- Hid (Item's unique identifier)
 	- Name
 	- Icon (Item graphic relative path)
@@ -46,5 +46,23 @@ statistical analysis, data mining, and machine learning.
 	- Stat (Whole item description)
 	- Tpl (Item enchantment point)
 	- Rarity
-	- Last Fetch Date
-	- Fetch Date (First fetch date)
+	- LastFetchDate
+	- FetchDate
+
+3. PlayerLevel
+	- Player id { get; set; }
+	- Level { get; set; }
+    - Fetch date { get; set; }
+
+4. PlayerNick
+	- Player id { get; set; }
+	- Nick { get; set; }
+    - FetchDate { get; set; }
+
+
+
+Data as of 10.09.2023
+	Players: 83189
+	PlayersNick: 83569
+	PlayersLevels: 86983
+	Items: 318828
