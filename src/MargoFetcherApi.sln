@@ -1,0 +1,84 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32616.157
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MargoFetcher.Domain", "MargonemPlayerFetcher.Domain\MargoFetcher.Domain.csproj", "{95E76543-A19D-4C53-8352-FA50AC078751}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MargoFetcher.Application", "MargonemPlayerFetcher.Application\MargoFetcher.Application.csproj", "{C25940C0-EAF5-4045-90CF-A09C414D18A0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MargoFetcher.Infrastructure", "MargonemPlayerFetcher.Infrastructure\MargoFetcher.Infrastructure.csproj", "{C47ECD35-DED0-4E30-9977-F83815E577F6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{F3C89B0D-6539-438B-A686-075BC48DF387}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{52C58B3B-B10F-4FD7-83EB-9C6898925662}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MargonemPlayerFetcher.Api.Tests", "..\tests\MargonemPlayerFetcher.Api.Tests\MargonemPlayerFetcher.Api.Tests.csproj", "{3AB7C6A7-10B7-4346-BDDD-72123BE8C559}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MargonemPlayerFetcher.Application.Tests", "..\tests\MargonemPlayerFetcher.Application.Tests\MargonemPlayerFetcher.Application.Tests.csproj", "{DC21A0B1-3389-404F-8648-DD45A647BEC0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MargonemPlayerFetcher.Infrastructure.Tests", "..\tests\MargonemPlayerFetcher.Infrastructure.Tests\MargonemPlayerFetcher.Infrastructure.Tests.csproj", "{283DD169-3F03-4DC4-9355-C5CB0A0B83A3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{271B4A33-68DA-40BE-B271-B04C0C8B4F4E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common", "Common\Common\Common.csproj", "{0C40E4CD-CE46-4266-8003-C2826630742C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MargoFetcher.Presentation", "MargoFetcher.Console\MargoFetcher.Presentation.csproj", "{86456490-692C-406C-A563-09E24EAE2A98}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{95E76543-A19D-4C53-8352-FA50AC078751}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95E76543-A19D-4C53-8352-FA50AC078751}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95E76543-A19D-4C53-8352-FA50AC078751}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95E76543-A19D-4C53-8352-FA50AC078751}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C25940C0-EAF5-4045-90CF-A09C414D18A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C25940C0-EAF5-4045-90CF-A09C414D18A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C25940C0-EAF5-4045-90CF-A09C414D18A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C25940C0-EAF5-4045-90CF-A09C414D18A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C47ECD35-DED0-4E30-9977-F83815E577F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C47ECD35-DED0-4E30-9977-F83815E577F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C47ECD35-DED0-4E30-9977-F83815E577F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C47ECD35-DED0-4E30-9977-F83815E577F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3AB7C6A7-10B7-4346-BDDD-72123BE8C559}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3AB7C6A7-10B7-4346-BDDD-72123BE8C559}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3AB7C6A7-10B7-4346-BDDD-72123BE8C559}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3AB7C6A7-10B7-4346-BDDD-72123BE8C559}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC21A0B1-3389-404F-8648-DD45A647BEC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC21A0B1-3389-404F-8648-DD45A647BEC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC21A0B1-3389-404F-8648-DD45A647BEC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC21A0B1-3389-404F-8648-DD45A647BEC0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{283DD169-3F03-4DC4-9355-C5CB0A0B83A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{283DD169-3F03-4DC4-9355-C5CB0A0B83A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{283DD169-3F03-4DC4-9355-C5CB0A0B83A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{283DD169-3F03-4DC4-9355-C5CB0A0B83A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C40E4CD-CE46-4266-8003-C2826630742C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C40E4CD-CE46-4266-8003-C2826630742C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C40E4CD-CE46-4266-8003-C2826630742C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C40E4CD-CE46-4266-8003-C2826630742C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{86456490-692C-406C-A563-09E24EAE2A98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86456490-692C-406C-A563-09E24EAE2A98}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86456490-692C-406C-A563-09E24EAE2A98}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86456490-692C-406C-A563-09E24EAE2A98}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{95E76543-A19D-4C53-8352-FA50AC078751} = {F3C89B0D-6539-438B-A686-075BC48DF387}
+		{C25940C0-EAF5-4045-90CF-A09C414D18A0} = {F3C89B0D-6539-438B-A686-075BC48DF387}
+		{C47ECD35-DED0-4E30-9977-F83815E577F6} = {F3C89B0D-6539-438B-A686-075BC48DF387}
+		{3AB7C6A7-10B7-4346-BDDD-72123BE8C559} = {52C58B3B-B10F-4FD7-83EB-9C6898925662}
+		{DC21A0B1-3389-404F-8648-DD45A647BEC0} = {52C58B3B-B10F-4FD7-83EB-9C6898925662}
+		{283DD169-3F03-4DC4-9355-C5CB0A0B83A3} = {52C58B3B-B10F-4FD7-83EB-9C6898925662}
+		{271B4A33-68DA-40BE-B271-B04C0C8B4F4E} = {F3C89B0D-6539-438B-A686-075BC48DF387}
+		{0C40E4CD-CE46-4266-8003-C2826630742C} = {271B4A33-68DA-40BE-B271-B04C0C8B4F4E}
+		{86456490-692C-406C-A563-09E24EAE2A98} = {F3C89B0D-6539-438B-A686-075BC48DF387}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2FA7672F-83DE-40E3-BF70-EC39FD722458}
+	EndGlobalSection
+EndGlobal

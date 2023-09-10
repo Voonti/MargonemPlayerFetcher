@@ -1,0 +1,73 @@
+{
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/api/Item/{hid}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44319
+        }
+      ],
+      "UpstreamPathTemplate": "/api/Item/{hid}",
+      "UpstreamHttpMethod": [ "Get" ],
+      "SwaggerKey": "Margo"
+    },
+    {
+      "DownstreamPathTemplate": "/api/Item",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44319
+        }
+      ],
+      "UpstreamPathTemplate": "/api/Item",
+      "UpstreamHttpMethod": [ "Post" ],
+      "SwaggerKey": "Margo"
+    },
+    {
+      "DownstreamPathTemplate": "/api/Player",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44319
+        }
+      ],
+      "UpstreamPathTemplate": "/api/Player",
+      "UpstreamHttpMethod": [ "Post", "Get" ],
+      "SwaggerKey": "Margo"
+    },
+    {
+      "DownstreamPathTemplate": "/api/Jobs",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44319
+        }
+      ],
+      "UpstreamPathTemplate": "/api/jobs",
+      "UpstreamHttpMethod": [ "Post" ],
+      "SwaggerKey": "Margo"
+    }
+  ],
+
+  "GlobalConfiguration": {
+    "BaseUrl": "https://localhost:44385"
+  },
+
+  "SwaggerEndPoints": [
+    {
+      "Key": "Margo",
+      "Config": [
+        {
+          "Name": "Margo Api",
+          "Version": "v1",
+          "Url": "https://localhost:44319/swagger/v1/swagger.json"
+        }
+      ]
+    }
+  ]
+}
