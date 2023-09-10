@@ -61,8 +61,9 @@ statistical analysis, data mining, and machine learning.
 
 
 
-Data as of 10.09.2023
-	Players: 83189
-	PlayersNick: 83569
-	PlayersLevels: 86983
-	Items: 318828
+Data as of 10.09.2023<br />
+-Players: 83189 <br />
+-PlayersNick: 83569 <br />
+-PlayersLevels: 86983 <br />
+-Items: 318828 <br />
+
