@@ -1,0 +1,60 @@
+select Count(*) from dbo.Players
+select Count(*) from dbo.PlayersNick
+select Count(*) from dbo.PlayersLevels
+
+select Count(*) from dbo.Items
+
+
+select * from dbo.Items order by PlayerId desc
+
+select PlayerId from dbo.PlayersNick
+group by PlayerId
+having count(*) >1
+
+
+select PlayerId from dbo.PlayersLevels
+group by PlayerId
+having count(*) >1
+
+
+select * from dbo.Players p
+where p.Id in (select PlayerId from dbo.PlayersNick
+group by PlayerId
+having count(*) >1) order by p.Id desc;
+
+select * from dbo.PlayersNick p
+where p.PlayerId in (select PlayerId from dbo.PlayersNick
+group by PlayerId
+having count(*) >1)  order by p.Id desc;
+
+select * from dbo.Players p
+where p.Id in (select PlayerId from dbo.PlayersLevels
+group by PlayerId
+having count(*) >1) order by p.Level desc;
+
+select * from dbo.PlayersLevels p
+where p.PlayerId in (select PlayerId from dbo.PlayersLevels
+group by PlayerId
+having count(*) >1) order by p.Level desc;
+
+
+select p.UserId, p.CharId, p.Level, CAST(
+      SUBSTRING(
+        i.Stat,
+        CHARINDEX('lvl=', i.Stat) + 4,
+        CHARINDEX(';', i.Stat, CHARINDEX('lvl=', i.Stat) + 4) - (CHARINDEX('lvl=', i.Stat) + 4)
+      ) AS INT
+    )  AS itemLevel from dbo.Items i 
+join dbo.Players p on p.Id = i.PlayerId
+where i.Name =(
+	select ii.Name from dbo.Items ii 
+	where ii.Hid = '792f50b156973f29afc992d66f4ff27efb1d77584724e0866773e54355ebd3ee')
+AND CHARINDEX('lvl=', i.Stat) > 0
+  AND CAST(
+      SUBSTRING(
+        i.Stat,
+        CHARINDEX('lvl=', i.Stat) + 4,
+        CHARINDEX(';', i.Stat, CHARINDEX('lvl=', i.Stat) + 4) - (CHARINDEX('lvl=', i.Stat) + 4)
+      ) AS INT
+    ) = 111
+	order by p.level asc

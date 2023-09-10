@@ -11,7 +11,7 @@ namespace MargoFetcher.Domain.Interfaces
     {
         public Task InsertItem(Item item);
         public Task UpdateFetchDate(Item item);
-        public Task<bool> CheckIfItemExist(int userId, int charId, string hid);
+        public Task<bool> CheckIfItemExist(Item item);
         public Task<int> GetDuplicatedItemsCount();
     }
 }

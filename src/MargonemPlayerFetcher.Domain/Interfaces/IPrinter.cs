@@ -13,8 +13,8 @@ namespace MargoFetcher.Domain.Interfaces
         void PrintPlayerFetchStatus(int totalPlayers);
         void PrintException(string message);
         void PrintStart(string method);
-        void PrintNewItem(Item item);
-        void PrintUpdatedItemFetchDate(Item item);
+        void PrintNewItem(int lp, Item item);
+        void PrintUpdatedItemFetchDate(int lp, Item item);
         void DrawProgress(int current, int total);
         void PrintUnknownItemType(Item item);
         void PrintDuplicatedItems(int duplicatedItemsCount);

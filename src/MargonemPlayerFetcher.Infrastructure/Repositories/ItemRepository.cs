@@ -14,29 +14,28 @@ namespace MargoFetcher.Infrastructure.Repositories
     public class ItemRepository : IItemRepository
     {
         private readonly MargoDbContext _margoDbContext;
-        private readonly IPrinter _printer;
 
         public ItemRepository(
-            MargoDbContext margoDbContext,
-            IPrinter printer)
-
+            MargoDbContext margoDbContext)
         {
             _margoDbContext = margoDbContext;
-            _printer = printer;
         }
 
-        public async Task<bool> CheckIfItemExist(int userId, int charId, string hid)
+        public async Task<bool> CheckIfItemExist(Item item)
         {
-            return await _margoDbContext.Items.AnyAsync(x => 
-                x.userId == userId
-                && x.charId == charId
-                && x.hid == hid);
+            var existingItem = await GetItem(item);
+
+
+            if (existingItem == null)
+                return false;
+            else
+                return true;
         }
 
         public async Task<int> GetDuplicatedItemsCount()
         {
             return await _margoDbContext.Items
-                .GroupBy(m => new { m.userId, m.charId, m.hid, m.name })
+                .GroupBy(m => new { m.PlayerId, m.Hid, m.Name })
                 .Where(g => g.Count() > 1)
                 .Select(g => g.Key)
                 .CountAsync();
@@ -44,22 +43,23 @@ namespace MargoFetcher.Infrastructure.Repositories
 
         public async Task InsertItem(Item item)
         {
-            _printer.PrintNewItem(item);
             await _margoDbContext.Items.AddAsync(item);
             await _margoDbContext.SaveChangesAsync();
         }
 
         public async Task UpdateFetchDate(Item item)
         {
-            _printer.PrintUpdatedItemFetchDate(item);
+            var existingItem = await GetItem(item);
 
-            var entity = await _margoDbContext.Items.FirstAsync(x =>
-                x.hid == item.hid &&
-                x.charId == item.charId &&
-                x.userId == item.userId);
-
-            entity.lastFetchDate = DateTime.Now;
+            existingItem!.LastFetchDate = item.FetchDate;
             await _margoDbContext.SaveChangesAsync();
+        }
+
+        private async Task<Item?> GetItem(Item item)
+        {
+            return await _margoDbContext.Items.FirstOrDefaultAsync(x =>
+                x.PlayerId == item.PlayerId &&
+                x.Hid == item.Hid);
         }
     }
 }

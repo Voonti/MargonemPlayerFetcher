@@ -11,6 +11,8 @@ using System.Threading.Tasks;
 using System.Collections;
 using System.Net.Http;
 using Microsoft.Extensions.Http;
+using Microsoft.AspNetCore.Http;
+using Azure;
 
 namespace MargoFetcher.Infrastructure.Services
 {
@@ -28,41 +30,66 @@ namespace MargoFetcher.Infrastructure.Services
         }
         public async Task<Dictionary<string, Item>> FetchPlayerItems(Player player)
         {
-            var catalog = Convert.ToInt32(player.charId) % 128;
-            var query = $"{player.server}/{catalog}/{player.charId}.json";
+            var catalog = Convert.ToInt32(player.CharId) % 128;
+            var query = $"{player.Server}/{catalog}/{player.CharId}.json";
 
             var httpClient = _httpClientFactory.CreateClient(GlobalParameters.ITEM_CLIENT);
 
-            var response = await httpClient.GetAsync(query);
+            try
+            {
+                var response = await httpClient.GetAsync(query);
 
-            if (!response.IsSuccessStatusCode)
+                if (!response.IsSuccessStatusCode)
+                {
+                    var statusCode = response.StatusCode;
+                    var reasonPhrase = response.ReasonPhrase;
+                    if(reasonPhrase != "Not Found")
+                    {
+                        var debug = true;
+                    }
+
+                    var errorMessage = $"Bad response: Status Code = {statusCode}, Reason = {reasonPhrase}";
+                    _printer.PrintException(errorMessage);
+                    return null;
+                }
+
+                var content = await response.Content.ReadAsStringAsync();
+
+                return JsonConvert.DeserializeObject<Dictionary<string, Item>>(content);
+
+            }
+            catch (Exception ex)
+            {
+                _printer.PrintException(ex.Message);
                 return null;
-
-            var content = await response.Content.ReadAsStringAsync();
-
-            return JsonConvert.DeserializeObject<Dictionary<string, Item>>(content);
+            }
         }
 
         public async Task<IEnumerable<Player>> FetchPlayers(string server)
         {
-                var query = $"{server}.json";
+            var query = $"{server}.json";
 
-                var httpClient = _httpClientFactory.CreateClient(GlobalParameters.PLAYER_CLIENT);
+            var httpClient = _httpClientFactory.CreateClient(GlobalParameters.PLAYER_CLIENT);
 
-                var response = await httpClient.GetAsync(query);
+            var response = await httpClient.GetAsync(query);
 
-                var content = await response.Content.ReadAsStringAsync();
+            var content = await response.Content.ReadAsStringAsync();
 
-                var players = DeserializePlayers(content);
+            var players = DeserializePlayers(content);
 
-                if (players == null)
-                    return null;
+            if (players == null)
+                return null;
 
-                var tasks = players.Select(i => AssignServer(i, server));
+            //var tasks = players.Select(i => AssignServer(i, server));
+            var fetchDate = DateTime.UtcNow;
 
-                await Task.WhenAll(tasks);
+            players = players.Select(p => { p.Server = server; return p; });
+            players = players.Select(p => { p.LastFetchDate = fetchDate; return p; });
+            players = players.Select(p => { p.FirstFetchDate = fetchDate; return p; });
 
-                return players;
+                //await Task.WhenAll(tasks);
+
+            return players;
         }
 
         private IEnumerable<Player> DeserializePlayers(string content)
@@ -78,9 +105,9 @@ namespace MargoFetcher.Infrastructure.Services
             }
         }
 
-        private async Task AssignServer(Player player, string server)
-        {
-            player.server = server;
-        }
+        //private async Task AssignServer(Player player, string server)
+        //{
+        //    player.server = server;
+        //}
     }
 }

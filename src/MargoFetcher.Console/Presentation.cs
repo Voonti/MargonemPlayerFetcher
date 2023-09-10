@@ -3,50 +3,51 @@ using MargoFetcher.Application.Equipment;
 using MargoFetcher.Application.Equipment.Commands;
 using MargoFetcher.Application.Jobs;
 using MargoFetcher.Application.Jobs.Commands;
-using MargoFetcher.Application.Players.Commands;
 using MargoFetcher.Domain.Entities;
 using MargoFetcher.Domain.Enums;
 using MargoFetcher.Domain.Interfaces;
+using MargoFetcher.Infrastructure.Repositories;
 using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace MargoFetcher.Presentation
 {
     public class Presentation
     {
-        private readonly IMediator _mediator;
+        private readonly IDispatcherService _dispatcherService;
 
         public Presentation(
-            IMediator mediator)
+            IDispatcherService dispatcherService)
         {
-            _mediator = mediator;
+            _dispatcherService = dispatcherService;
         }
 
         public async Task FetchPlayers()
         {
-            await _mediator.Send(new SyncPlayerCommand());
+            var random = new Random();
+
+            while (true)
+            {
+                await _dispatcherService.DispatchPlayerSync();
+
+                int secondsToWait = random.Next(10, 51);
+
+                Console.WriteLine($"Wait: {60+secondsToWait}sec");
+
+                await Task.Delay(TimeSpan.FromSeconds(60 + secondsToWait));
+            }
         }
 
 
         public async Task FetchEquipment()
         {
-            await _mediator.Send(new SyncEquipmentCommand());
+            await _dispatcherService.DispatchEquipmentSync();
         }
-
-        public async Task FetchCorruptedItems()
-        {
-            await _mediator.Send(new FetchCorruptedItemsCommand());
-        }
-
-        public async Task FetchCorruptedPlayers()
-        {
-            await _mediator.Send(new FetchCorruptedPlayersCommand());
-        }
-
         public async Task Run()
         {
             var success = false;
@@ -55,8 +56,6 @@ namespace MargoFetcher.Presentation
             {
                 Console.WriteLine("1 => Fetch Players");
                 Console.WriteLine("2 => Fetch Equipment");
-                Console.WriteLine("3 => Fetch Corrupted Items");
-                Console.WriteLine("4 => Fetch Corrupted Players");
 
                 var choice = Console.ReadLine();
 
@@ -70,19 +69,10 @@ namespace MargoFetcher.Presentation
                 case 2:
                     await FetchEquipment();
                     break;
-                case 3:
-                    await FetchCorruptedItems();
-                    break;
-                case 4:
-                    await FetchCorruptedPlayers();
-                    break;
                 default:
                     Console.WriteLine("Brak :(");
                     break;
             }
         }
-
-
-
     }
 }

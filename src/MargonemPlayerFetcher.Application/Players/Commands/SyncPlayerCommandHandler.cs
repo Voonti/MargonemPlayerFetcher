@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace MargoFetcher.Application.Jobs.Commands
 {
-    public record SyncPlayerCommand() : IRequest<Unit>;
+    public record SyncPlayerCommand(Player player) : IRequest<Unit>;
     public class SyncPlayerCommandHandler : IRequestHandler<SyncPlayerCommand>
     {
         private readonly IGarmoryApiService _garmoryApiService;
@@ -28,39 +28,28 @@ namespace MargoFetcher.Application.Jobs.Commands
 
         public async Task<Unit> Handle(SyncPlayerCommand request, CancellationToken cancellationToken)
         {
-            _printer.PrintStart(nameof(SyncPlayerCommandHandler));
-
-            var servers = await _playerRepository.GetServers();
-
-            foreach (var server in servers)
-            {
-                _printer.PrintServer(server.ServerName);
-
-                var players = (await _garmoryApiService.FetchPlayers(server.ServerName));
-
-                if (players == null)
-                    continue;
-
-                //var saveTasks = new List<Task>();
-                foreach (var player in players)
-                {
-                    await SavePlayer(player);
-                    //var task = SavePlayer(player);s
-                    //saveTasks.Add(task);
-                }
-
-                _printer.PrintPlayerFetchStatus(players.Count());
-
-                //await Task.WhenAll(saveTasks);
-            }
-
+            await SavePlayer(request.player);
             return Unit.Value;
         }
 
         private async Task SavePlayer(Player player)
         {
-            await _playerRepository.InsertPlayerIfNotExist(player);
-            await _playerRepository.UpdatePlayersLevel(player);
+            try
+            {
+                if (!await _playerRepository.CheckIfPlayerExists(player)) {
+                    await _playerRepository.InsertPlayer(player);
+                }
+                else
+                {
+                    await _playerRepository.UpdatePlayerLevel(player);
+                    await _playerRepository.UpdatePlayerName(player);
+                    await _playerRepository.UpdatePlayerFetchDate(player);
+                }
+            }
+            catch (Exception ex)
+            {
+                _printer.PrintException(ex.Message);
+            }
         }
     }
 }

@@ -34,23 +34,23 @@ namespace MargoFetcher.Infrastructure.ConsolePrinter
             Console.ResetColor();
         }
 
-        public void PrintNewItem(Item item)
+        public void PrintNewItem(int lp, Item item)
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine($"\tNew Item: *{item.rarity}* {item.name}");
+            Console.WriteLine($"[{lp}] New Item: *{item.Rarity}* {item.Name}");
             Console.ResetColor();
         }
 
-        public void PrintUpdatedItemFetchDate(Item item)
+        public void PrintUpdatedItemFetchDate(int lp, Item item)
         {
-            Console.WriteLine($"\tUpdated fetch date: {item.name}");
+            Console.WriteLine($"[{lp}] Updated fetch date: {item.Name}");
         }
         public void DrawProgress(int current, int total)
         {
             int originalLeft = Console.CursorLeft;
             int originalTop = Console.CursorTop;
 
-            Console.SetCursorPosition(Console.WindowWidth -11, 0);
+            Console.SetCursorPosition(Console.WindowWidth - 11, 0);
             Console.Write($"{current}/{total}");
 
             Console.SetCursorPosition(originalLeft, originalTop);
@@ -59,7 +59,7 @@ namespace MargoFetcher.Infrastructure.ConsolePrinter
         public void PrintUnknownItemType(Item item)
         {
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine($"\tUnknown Item type: *{item.rarity}* {item.name}");
+            Console.WriteLine($"\tUnknown Item type: *{item.Rarity}* {item.Name}");
             Console.ResetColor();
         }
 

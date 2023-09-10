@@ -16,10 +16,11 @@ namespace MargoFetcher.Infrastructure.IoC
     {
         public static IServiceCollection AddFetcherService(this IServiceCollection services, string connectionString)
         {
-            services.AddScoped<IGarmoryApiService, GarmoryApiService>();
-            services.AddScoped<IItemRepository, ItemRepository>();
-            services.AddScoped<IPlayerRepository, PlayerRepository>();
-            services.AddScoped<IPrinter, Printer>();
+            services.AddTransient<IGarmoryApiService, GarmoryApiService>();
+            services.AddTransient<IItemRepository, ItemRepository>();
+            services.AddTransient<IPlayerRepository, PlayerRepository>();
+            services.AddTransient<IPrinter, Printer>();
+            services.AddTransient<IDispatcherService, DispatcherService>();
 
             services.AddDbContext<MargoDbContext>(o =>
             {

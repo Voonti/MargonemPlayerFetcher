@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -15,17 +17,38 @@ namespace MargoFetcher.Domain.Entities
         [Key]
         public int Id { get; set; }
         [JsonProperty("a")]
-        public int userId { get; set; }
+        public int UserId { get; set; }
         [JsonProperty("c")]
-        public int charId { get; set; }
+        public int CharId { get; set; }
         [JsonProperty("n")]
-        public string nick { get; set; }
-        public string server { get; set; }
+        public string Nick { get; set; }
+        public string Server { get; set; }
         [JsonProperty("p")]
-        public string profession { get; set; }
+        public string Profession { get; set; }
         [JsonProperty("r")]
-        public string rank { get; set; }
+        public string Rank { get; set; }
         [JsonProperty("l")]
-        public int level { get; set; }
+        public int Level { get; set; }
+        public DateTime LastFetchDate { get; set; }
+        public DateTime FirstFetchDate { get; set; }
+    }
+
+    public class PlayerConfiguration : IEntityTypeConfiguration<Player>
+    {
+        public void Configure(EntityTypeBuilder<Player> builder)
+        {
+            builder.HasKey(x => x.Id);
+            builder.Property(x => x.UserId);
+            builder.Property(x => x.CharId);
+            builder.Property(x => x.Nick);
+            builder.Property(x => x.Server);
+            builder.Property(x => x.Profession);
+            builder.Property(x => x.Rank);
+            builder.Property(x => x.Level);
+            builder.Property(x => x.LastFetchDate);
+            builder.Property(x => x.FirstFetchDate);
+
+            builder.HasIndex(x => new { x.UserId, x.CharId, x.Server });
+        }
     }
 }
